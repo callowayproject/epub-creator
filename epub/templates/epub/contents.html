@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" 
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Contents</title>
+<link rel="stylesheet" href="../stylesheet.css" type="text/css" />
+<link rel="stylesheet" href="../pagetemplate.xpgt" type="application/vnd.adobe-page-template+xml" />
+</head>
+<body>
+<h2 class="header">Section 1</h2>
+<ul>
+{% for article in articles %}<li><a href="{{ article.filename }}">{{ article.content.headline|safe }}</a></li>
+{% endfor %}
+</ul>
+</body>
+</html>

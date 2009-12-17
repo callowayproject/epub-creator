@@ -1,0 +1,7 @@
+1: Create an EPub object
+2. Set metadata- title, publisher, description, creator, date, type, rights
+3. optionally set identifier (does uuid by default)
+4. Set any other global metadata (contributors are added as each article is added)
+5: Get list of articles/chapters
+6. Loop through each article and add it into the epub:
+	6.1. it adds the author to the contributors list

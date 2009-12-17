@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package version="2.0" xmlns="http://www.idpf.org/2007/opf" unique-identifier="{{ metadata.unique_id.id }}">
+ <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+   {% block metadata %}{{ metadata|safe }}{% endblock %}
+   {% block addlmetadata %}{% endblock %}
+ </metadata>
+ <manifest>{% block manifest %}
+  <item id="ncx" href="toc.ncx" media-type="text/xml" />
+  <item id="style" href="stylesheet.css" media-type="text/css" />
+  <item id="pagetemplate" href="pagetemplate.xpgt" media-type="application/vnd.adobe-page-template+xml" />
+  <item id="titlepage" href="text/title_page.html" media-type="application/xhtml+xml" />
+  <item id="contents" href="text/contents.html" media-type="application/xhtml+xml" />
+  {% for item in articles %}<item id="article{{ forloop.counter }}" href="text/{{ item.filename|safe }}" media-type="application/xhtml+xml"/>{% endfor %}
+  {% for item in images %}<item id="img{{ forloop.counter }}" href="images/{{ item.filename|safe }}" media-type="{{item.mimetype}}"/>{% endfor %}
+ {% endblock %}{% block addlmanifest %}{% endblock %}</manifest>
+ <spine toc="ncx">{% block spine %}
+  <itemref idref="titlepage" />
+  <itemref idref="contents" />
+  {% for item in articles %}<itemref idref="article{{ forloop.counter }}" />{% endfor %}
+ {% endblock %}{% block addlspine %}{% endblock %}</spine>
+ <guide>{% block guide %}
+	<reference type="toc" title="Contents" href="text/contents.html" />
+ {% endblock %}{% block addlguide %}{% endblock %}</guide>
+</package>
